@@ -1,5 +1,9 @@
 # vol-stable-diffusion-webui
 
+step 1
 
+``` https://github.com/fengmingxing/vol-stable-diffusion-webui.git
 
-docker build -t=vol-stable-diffusion-webui:latest . -f
+step 2
+
+``` docker build -t=vol-stable-diffusion-webui:latest . -f
