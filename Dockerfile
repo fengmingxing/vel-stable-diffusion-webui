@@ -17,11 +17,11 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd stable-diffusion-webui && \
     git checkout "5ab7f213bec2f816f9c5644becb32eb72c8ffb89" && \
     mkdir repositories && \
-    git clone https://github.com/CompVis/stable-diffusion.git repositories/stable-diffusion && \
-    git clone https://github.com/CompVis/taming-transformers.git repositories/taming-transformers && \
-    git clone https://github.com/sczhou/CodeFormer.git repositories/CodeFormer && \
-    git clone https://github.com/salesforce/BLIP.git repositories/BLIP && \
-    git clone https://github.com/Stability-AI/stablediffusion repositories/stable-diffusion-stability-ai
+    git clone git://github.com/CompVis/stable-diffusion.git repositories/stable-diffusion && \
+    git clone git://github.com/CompVis/taming-transformers.git repositories/taming-transformers && \
+    git clone git://github.com/sczhou/CodeFormer.git repositories/CodeFormer && \
+    git clone git://github.com/salesforce/BLIP.git repositories/BLIP && \
+    git clone git://github.com/Stability-AI/stablediffusion repositories/stable-diffusion-stability-ai
 
 RUN cd stable-diffusion-webui && \
     pip install transformers==4.19.2 diffusers invisible-watermark --prefer-binary && \
