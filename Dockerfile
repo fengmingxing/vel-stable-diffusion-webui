@@ -36,4 +36,4 @@ RUN cd stable-diffusion-webui && \
 #ENV http_proxy=
 #ENV https_proxy=
 WORKDIR stable-diffusion-webui
-CMD ["python", "webui.py", "--xformers", "--enable-insecure-extension-access", "--api", "--skip-install", "--share", "--ckpt-dir", "/stable-diffusion-webui/models/Stable-diffusion" ]
+CMD ["python", "webui.py", "--xformers", "--enable-insecure-extension-access", "--api", "--skip-install", "--ckpt-dir", "/stable-diffusion-webui/models/Stable-diffusion" ]
