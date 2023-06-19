@@ -32,6 +32,7 @@ RUN cd stable-diffusion-webui && \
     pip install -U numpy  --prefer-binary && \
     pip install open_clip_torch && \
     pip install xformers
+COPY ./misc.py /root/miniconda3/lib/python3.10/site-packages/basicsr/utils/misc.py
 #如果使用了代理记得去掉环境变量，不然会有其他问题，例如只能使用--share，同时会有502 bad gateway报错
 #ENV http_proxy=
 #ENV https_proxy=
