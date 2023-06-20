@@ -3,8 +3,8 @@ LABEL org.opencontainers.image.authors="fengmingxing@bytedance.com"
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG DEBIAN_FRONTEND=noninteractive
 #火山vpc环境下构建可以通过fasttrack加速
-#ENV http_proxy=http://100.68.174.39:3128
-#ENV https_proxy=http://100.68.174.39:3128
+ENV http_proxy=http://100.68.174.39:3128
+ENV https_proxy=http://100.68.174.39:3128
 ENV TZ=Europe/Moscow
 RUN apt-get update && apt-get install -y git ffmpeg libsm6 libxext6 wget && \ 
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
@@ -34,7 +34,7 @@ RUN cd stable-diffusion-webui && \
     pip install xformers
 COPY ./misc.py /root/miniconda3/lib/python3.10/site-packages/basicsr/utils/misc.py
 #如果使用了代理记得去掉环境变量，不然会有其他问题，例如只能使用--share，同时会有502 bad gateway报错
-#ENV http_proxy=
-#ENV https_proxy=
+ENV http_proxy=
+ENV https_proxy=
 WORKDIR stable-diffusion-webui
 CMD ["python", "webui.py", "--xformers", "--enable-insecure-extension-access", "--api", "--skip-install", "--listen","--ckpt-dir", "/stable-diffusion-webui/models/Stable-diffusion" ]
