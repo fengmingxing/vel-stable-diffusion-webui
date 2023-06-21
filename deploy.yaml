@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sd-a10-vci
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: sd-a10-vci
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vci.vke.volcengine.com/preferred-instance-types: vci.ini2.26c-243gi
+        vci.volcengine.com/tls-enable: "false"
+        vke.volcengine.com/burst-to-vci: enforce
+      labels:
+        app: sd-a10-vci
+    spec:
+      containers:
+      - image: ${image}
+        imagePullPolicy: IfNotPresent
+        name: sd
+        resources:
+          limits:
+            nvidia.com/gpu: "2"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /stable-diffusion-webui/models/Stable-diffusion/
+          name: sd
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: sd
+        persistentVolumeClaim:
+          claimName: fmx-sd-pvc
