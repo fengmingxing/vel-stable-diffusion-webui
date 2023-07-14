@@ -36,5 +36,5 @@ COPY ./ranged_response.py /root/miniconda3/lib/python3.10/site-packages/gradio/r
 #如果使用了代理记得去掉环境变量，不然会有其他问题，例如只能使用--share，同时会有502 bad gateway报错
 ENV http_proxy=
 ENV https_proxy=
-WORKDIR stable-diffusion-webui
+WORKDIR /stable-diffusion-webui
 CMD ["python", "webui.py", "--xformers", "--enable-insecure-extension-access", "--api", "--skip-install", "--listen","--ckpt-dir", "/stable-diffusion-webui/models/Stable-diffusion" ]
