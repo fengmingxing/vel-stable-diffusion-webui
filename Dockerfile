@@ -32,6 +32,7 @@ RUN cd stable-diffusion-webui && \
     pip install open_clip_torch && \
     pip install xformers==0.0.17
 COPY ./misc.py /root/miniconda3/lib/python3.10/site-packages/basicsr/utils/misc.py
+COPY ./ranged_response.py /root/miniconda3/lib/python3.10/site-packages/gradio/ranged_response.py
 #如果使用了代理记得去掉环境变量，不然会有其他问题，例如只能使用--share，同时会有502 bad gateway报错
 ENV http_proxy=
 ENV https_proxy=
