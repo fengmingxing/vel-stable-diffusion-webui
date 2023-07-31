@@ -2,7 +2,6 @@ FROM cr-demo-cn-beijing.cr.volces.com/fengmingxing/cuda:11.4.3-devel-ubuntu20.04
 LABEL org.opencontainers.image.authors="fengmingxing@bytedance.com"
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG DEBIAN_FRONTEND=noninteractive
-#火山vpc环境下构建可以通过fasttrack加速
 ENV http_proxy=http://100.68.174.39:3128
 ENV https_proxy=http://100.68.174.39:3128
 ENV TZ=Europe/Moscow
@@ -33,7 +32,6 @@ RUN cd stable-diffusion-webui && \
     pip install xformers==0.0.17
 COPY ./misc.py /root/miniconda3/lib/python3.10/site-packages/basicsr/utils/misc.py
 COPY ./ranged_response.py /root/miniconda3/lib/python3.10/site-packages/gradio/ranged_response.py
-#如果使用了代理记得去掉环境变量，不然会有其他问题，例如只能使用--share，同时会有502 bad gateway报错
 ENV http_proxy=
 ENV https_proxy=
 WORKDIR /stable-diffusion-webui
